@@ -21,26 +21,26 @@ Develop a Vendor Management System using Django and Django REST Framework. This 
 # Test Case:
 - All the apis of VMS are secured with token(JWT).
 - 1.Create an user who will have access to all apis of VMS.
-	Api: "api/1/register"
-	Type: "POST"
-	Payload:
+	- Api: "api/1/register"
+	- Type: "POST"
+	- Payload:
 		{
 			"username": "satish",
 			"password": "test@123"
 		}
-	Response:
+	- Response:
 		{
 		    "username": "satish"
 		}
 - 2.Login with the credetials
-	Api: "api/1/login"
-	Type: "POST"
-	Payload:
+	- Api: "api/1/login"
+	- Type: "POST"
+	- Payload:
 		{
 			"username": "satish",
 			"password": "test@123"
 		}
-	Response:
+	- Response:
 		{
 		    "username": "satish",
 		    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAyMjQ3MTQ1LCJpYXQiOjE3MDIyNDY1NDUsImp0aSI6ImEzZWVlZjFlOTcyOTQyMjZhOWI2YWI1NjQyY2M4NzFlIiwidXNlcl9pZCI6MX0.aI6s-zSK-YwAvzFOUSR7FIhq-vLc9LRKyJPVT0DnuGE",
@@ -54,24 +54,24 @@ Develop a Vendor Management System using Django and Django REST Framework. This 
 
 - 4. Create Vendor
 
-	Api: "api/1/vendors" (Create vendor)
-	Type: "POST"
-	Payload:
+	- Api: "api/1/vendors" (Create vendor)
+	- Type: "POST"
+	- Payload:
 		{
 		    "name": "vendor 1",
 		    "contact_details": "contact_details 1",
 		    "address": "address 1"
 		}
 
-	Api: "api/1/vendors" (List all vendors)
-	Type: "GET"
+	- Api: "api/1/vendors" (List all vendors)
+	- Type: "GET"
 
-	Api: "api/1/vendors/1" (specific vendor)
-	Type: "GET"
+	- Api: "api/1/vendors/1" (specific vendor)
+	- Type: "GET"
 
-	Api: "api/1/vendors/1" (Update Vender)
-	Type: "PUT"
-	Payload:
+	- Api: "api/1/vendors/1" (Update Vender)
+	- Type: "PUT"
+	- Payload:
 	{
 	    "name": "vendor 1",
 	    "contact_details": "changed contact_details 1",
@@ -83,7 +83,7 @@ Develop a Vendor Management System using Django and Django REST Framework. This 
 
 - 5. Create Purchase Order or assign an order to vendor.
 	
-	Api: "api/1/purchase_orders" (Create purchase order)
+	- Api: "api/1/purchase_orders" (Create purchase order)
 	Type: "POST"
 	Payload:
 		{
@@ -94,13 +94,13 @@ Develop a Vendor Management System using Django and Django REST Framework. This 
 			"quantity": 1
 		}
 
-	Api: "api/1/purchase_orders" (List all purchase orders)
+	- Api: "api/1/purchase_orders" (List all purchase orders)
 	Type: "GET"
 
-	Api: "api/1/purchase_orders/1" (specific purchase order)
+	- Api: "api/1/purchase_orders/1" (specific purchase order)
 	Type: "GET"
 
-	Api: "api/1/purchase_orders/1" (Update purchase order)
+	- Api: "api/1/purchase_orders/1" (Update purchase order)
 	Type: "PUT"
 	Payload:
 	{
@@ -111,12 +111,12 @@ Develop a Vendor Management System using Django and Django REST Framework. This 
 		"quantity": 1
 	}
 
-	Api: "api/1/purchase_orders/1"
+	- Api: "api/1/purchase_orders/1"
 	Type: "DELETE"
 
 
 - 6. Add Required field to update. purchase order update api.
-	a) vendors On-Time Delivery Rate updated on every time status is marked as completed. For This
+	- a) vendors On-Time Delivery Rate updated on every time status is marked as completed. For This
 		add expected_delivery_date, actual_delivery_date in purchase_order or status=3 in purchase order update api.
 		{
 			"vendor": 1,
