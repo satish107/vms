@@ -19,8 +19,8 @@ Develop a Vendor Management System using Django and Django REST Framework. This 
 
 
 # Test Case:
-All the apis of VMS are secured with token(JWT).
-1.Create an user who will have access to all apis of VMS.
+- All the apis of VMS are secured with token(JWT).
+- 1.Create an user who will have access to all apis of VMS.
 	Api: "api/1/register"
 	Type: "POST"
 	Payload:
