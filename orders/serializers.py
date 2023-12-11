@@ -17,6 +17,6 @@ class HistoricalPerformanceSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = HistoricalPerformance
 		fields = (
-				'id', 'vendor', 'date', 'on_time_delevery_rate', 'quality_rating_avg',
+				'id', 'vendor', 'date', 'on_time_delivery_rate', 'quality_rating_avg',
 				'average_response_time', 'fulfilment_rate'
 			)

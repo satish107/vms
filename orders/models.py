@@ -3,6 +3,7 @@ from datetime import datetime
 from django.db import models
 from django.dispatch import receiver
 from django.db.models.signals import pre_save, post_save
+from django.core.exceptions import ValidationError
 from vendors.models import Vendor
 from orders.helpers import vendor_on_time_delivery_rate, vendor_avg_quality_rating, vendor_average_response_time, vendor_fulfilment_rate
 from vendors.helpers import generate_unique_code
@@ -42,6 +43,10 @@ class PurchaseOrder(models.Model):
 	def __str__(self):
 		return f"{self.po_number} - {self.vendor.name}"
 
+	def clean(self):
+		if self.status not in dict(self.ORDER_STATUS).keys():
+			raise ValidationError({'status': 'Invalid status value'})
+
 	def save(self, *args, **kwargs):
 		if not self.actual_delivery_date and self.status == PurchaseOrder.PENDING:
 			self.actual_delivery_date = self.expected_delivery_date
@@ -68,17 +73,17 @@ def post_save_handler(sender, instance=None, created=False, **kwargs):
 	vendor = instance.vendor
 	if not created:
 		if instance.status == PurchaseOrder.COMPLETED:
-			vendor.on_time_delevery_rate = vendor_on_time_delivery_rate(vendor)
+			vendor.on_time_delivery_rate = vendor_on_time_delivery_rate(vendor)
 			if instance.quality_rating:
 				vendor.quality_rating_avg = vendor_avg_quality_rating(vendor)
-			vendor.save(update_fields=["on_time_delevery_rate", "quality_rating_avg"])
+			vendor.save(update_fields=["on_time_delivery_rate", "quality_rating_avg"])
 		else:
 			pass
 	if not HistoricalPerformance.objects.filter(vendor_id=vendor.id).exists():
 		HistoricalPerformance.objects.create(
 				vendor=vendor,
 				date=datetime.now(),
-				on_time_delevery_rate=vendor.on_time_delevery_rate,
+				on_time_delivery_rate=vendor.on_time_delivery_rate,
 				quality_rating_avg=vendor.quality_rating_avg,
 				average_response_time=vendor.average_response_time,
 				fulfilment_rate=vendor.fulfilment_rate,
@@ -86,7 +91,7 @@ def post_save_handler(sender, instance=None, created=False, **kwargs):
 	else:
 		historical_performance = HistoricalPerformance.objects.filter(vendor_id=vendor.id).last()
 		historical_performance.date = datetime.now()
-		historical_performance.on_time_delevery_rate = vendor.on_time_delevery_rate
+		historical_performance.on_time_delivery_rate = vendor.on_time_delivery_rate
 		historical_performance.quality_rating_avg = vendor.quality_rating_avg
 		historical_performance.average_response_time = vendor.average_response_time
 		historical_performance.fulfilment_rate = vendor.fulfilment_rate
@@ -97,7 +102,7 @@ def post_save_handler(sender, instance=None, created=False, **kwargs):
 class HistoricalPerformance(models.Model):
 	vendor = models.ForeignKey(Vendor, null=True, blank=True, on_delete=models.CASCADE)
 	date = models.DateTimeField(auto_now_add=True)
-	on_time_delevery_rate = models.FloatField(null=True, blank=True)
+	on_time_delivery_rate = models.FloatField(null=True, blank=True)
 	quality_rating_avg = models.FloatField(null=True, blank=True)
 	average_response_time = models.FloatField(null=True, blank=True)
 	fulfilment_rate = models.FloatField(null=True, blank=True)

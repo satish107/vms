@@ -7,6 +7,6 @@ class VendorSerializer(serializers.ModelSerializer):
 		model = Vendor
 		fields = (
 				'id', 'name', 'contact_details', 'address', 'vendor_code',
-				'on_time_delevery_rate', 'quality_rating_avg', 'average_response_time', 'fulfilment_rate', 
+				'on_time_delivery_rate', 'quality_rating_avg', 'average_response_time', 'fulfilment_rate', 
 				'added_on', 'updated_on'
 			)
