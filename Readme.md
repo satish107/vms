@@ -8,7 +8,7 @@ Develop a Vendor Management System using Django and Django REST Framework. This 
 - [Django Rest Framework](https://www.django-rest-framework.org/)
 
 # Installation
-- Clone the code
+- Clone the VMS Project
 - git clone git@github.com:satishkmr632/vms.git
 - Create a virtual environment and install the requirements.
 - python3 -m venv env && source env/bin/activate
@@ -21,6 +21,8 @@ Develop a Vendor Management System using Django and Django REST Framework. This 
 # Api Documentation
 	https://documenter.getpostman.com/view/11219996/2s9YkhhQWB
 
+# Run Test Case:
+- python manage.py test
 
 # Test Case:
 - All the apis of VMS are secured with token(JWT).
