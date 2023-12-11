@@ -9,6 +9,7 @@ Develop a Vendor Management System using Django and Django REST Framework. This 
 
 # Installation
 - Clone the code
+- git clone git@github.com:satishkmr632/vms.git
 - Create a virtual environment and install the requirements.
 - python3 -m venv env && source env/bin/activate
 - pip install -r requirements.txt
@@ -101,8 +102,8 @@ Develop a Vendor Management System using Django and Django REST Framework. This 
 	Type: "GET"
 
 	- Api: "api/1/purchase_orders/1" (Update purchase order)
-	Type: "PUT"
-	Payload:
+	- Type: "PUT"
+	- Payload:
 	{
 		"vendor": 1,
 		"expected_delivery_date": "2023-12-7T19:54:37.710051Z",
@@ -112,7 +113,7 @@ Develop a Vendor Management System using Django and Django REST Framework. This 
 	}
 
 	- Api: "api/1/purchase_orders/1"
-	Type: "DELETE"
+	- Type: "DELETE"
 
 
 - 6. Add Required field to update. purchase order update api.
@@ -126,7 +127,7 @@ Develop a Vendor Management System using Django and Django REST Framework. This 
 			"quantity": 1,
 			"status": 3
 		}
-	b) Quality Rating Average:
+	- b) Quality Rating Average:
 		if Quality Rating and order status is completed then calculate Average value of Quality Rating of the vendor.
 		{
 			"vendor": 1,
@@ -134,7 +135,7 @@ Develop a Vendor Management System using Django and Django REST Framework. This 
 			"status": 3
 		}
 
-	c) Average Response Time:
+	- c) Average Response Time:
 		First update po with issue date
 		{
 			"vendor": 1,
@@ -145,6 +146,6 @@ Develop a Vendor Management System using Django and Django REST Framework. This 
 
 		find difference between acknowledge_date and issue date to caclculate avg_response_time
 	
-	d) Fulfilment Rate:
+	- d) Fulfilment Rate:
 		Any Change in PO status, Fulfilment Rate is updates
 		we can use the po's update api
