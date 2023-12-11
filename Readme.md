@@ -32,7 +32,7 @@ Develop a Vendor Management System using Django and Django REST Framework. This 
 		{
 		    "username": "satish"
 		}
-2.Login with the credetials
+- 2.Login with the credetials
 	Api: "api/1/login"
 	Type: "POST"
 	Payload:
@@ -47,12 +47,12 @@ Develop a Vendor Management System using Django and Django REST Framework. This 
 		    "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTcwMjMzMjk0NSwiaWF0IjoxNzAyMjQ2NTQ1LCJqdGkiOiI4MmJhY2RhM2VhMmU0OWYxOTljMzMzYjYyNzNmNGNhNSIsInVzZXJfaWQiOjF9.WM2UcStZDG5MpUHiuBgPRxy5Qjg8IuzvSxAu126lT9w"
 		}
 
-3. Pass the access_token in headers of every request as Authorization Key.
+- 3. Pass the access_token in headers of every request as Authorization Key.
 	Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAyMjQ3MTQ1LCJpYXQiOjE3MDIyNDY1NDUsImp0aSI6ImEzZWVlZjFlOTcyOTQyMjZhOWI2YWI1NjQyY2M4NzFlIiwidXNlcl9pZCI6MX0.aI6s-zSK-YwAvzFOUSR7FIhq-vLc9LRKyJPVT0DnuGE
 
 	if token expires create another one by login again, as access_token life is 30 Mins.
 
-4. Create Vendor
+- 4. Create Vendor
 
 	Api: "api/1/vendors" (Create vendor)
 	Type: "POST"
@@ -81,7 +81,7 @@ Develop a Vendor Management System using Django and Django REST Framework. This 
 	Api: "api/1/vendors/1"
 	Type: "DELETE"
 
-5. Create Purchase Order or assign an order to vendor.
+- 5. Create Purchase Order or assign an order to vendor.
 	
 	Api: "api/1/purchase_orders" (Create purchase order)
 	Type: "POST"
@@ -115,7 +115,7 @@ Develop a Vendor Management System using Django and Django REST Framework. This 
 	Type: "DELETE"
 
 
-6. Add Required field to update. purchase order update api.
+- 6. Add Required field to update. purchase order update api.
 	a) vendors On-Time Delivery Rate updated on every time status is marked as completed. For This
 		add expected_delivery_date, actual_delivery_date in purchase_order or status=3 in purchase order update api.
 		{
