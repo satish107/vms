@@ -18,6 +18,9 @@ Develop a Vendor Management System using Django and Django REST Framework. This 
 - python manage.py createsuperuser
 - python manage.py runserver
 
+# Api Documentation
+	https://documenter.getpostman.com/view/11219996/2s9YkhhQWB
+
 
 # Test Case:
 - All the apis of VMS are secured with token(JWT).

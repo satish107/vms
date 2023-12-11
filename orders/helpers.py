@@ -16,15 +16,17 @@ def vendor_avg_quality_rating(vendor):
 
 def vendor_average_response_time(vendor):
 	from orders.models import PurchaseOrder
+	average_response_time = None
 	average_time_response = PurchaseOrder.objects.filter(vendor=vendor).annotate(response_time=F("acknowledgement_date") - F("issue_date")).aggregate(average_time_response=Avg("response_time"))["average_time_response"]
-	return round(average_time_response.total_seconds(), 2)
+	if average_time_response:
+		average_response_time = round(average_time_response.total_seconds(), 2)
+	return average_response_time
 
 def vendor_fulfilment_rate(vendor):
 	from orders.models import PurchaseOrder
 	fulfilment_rate = None
 	completed_pos = PurchaseOrder.objects.filter(vendor=vendor.id, status=PurchaseOrder.COMPLETED)
 	pos_issued = PurchaseOrder.objects.filter(vendor=vendor, issue_date__isnull=True)
-	print("pos_issued.....", pos_issued)
 	if pos_issued.count() > 0:
 		fulfilment_rate = round(completed_pos.count()/pos_issued.count(), 2)
 	return fulfilment_rate
